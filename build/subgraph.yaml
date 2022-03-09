@@ -1,6 +1,6 @@
 specVersion: 0.0.2
 schema:
-  file: ./schema.graphql
+  file: schema.graphql
 dataSources:
   - kind: ethereum
     name: Token
@@ -13,17 +13,15 @@ dataSources:
       kind: ethereum/events
       apiVersion: 0.0.5
       language: wasm/assemblyscript
-
-  # Our Graph will able to query these data from schema.qraphql on entities we define
-      entities:  
+      entities:
         - Token
         - User
       abis:
         - name: Token
-          file: ./abis/Token.json
+          file: Token\abis\Token.json
       eventHandlers:
         - event: TokenURIUpdated(indexed uint256,address,string)
           handler: handleTokenURIUpdated
         - event: Transfer(indexed address,indexed address,indexed uint256)
           handler: handleTransfer
-      file: ./src/mapping.ts
+      file: Token\Token.wasm
